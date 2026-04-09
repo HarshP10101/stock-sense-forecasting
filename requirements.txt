@@ -1,0 +1,24 @@
+#dbt & data
+dbt-core
+dbt-duckdb
+duckdb
+pandas
+numpy
+
+#forecasting
+prophet
+
+#Streamlit app
+streamlit
+# plotly
+
+#AI summaries 
+# google-generativeai
+
+#orchestration
+dagster
+dagster-webserver
+
+#utilities
+python-dotenv
+

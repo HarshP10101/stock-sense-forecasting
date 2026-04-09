@@ -1,0 +1,30 @@
+[0m15:03:56.788987 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000287CD2E5850>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000287CD2DA2D0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000287CD2E5A90>]}
+
+
+============================== 15:03:56.793995 | 328fe18b-ca8e-4d9c-a2a9-842865265a22 ==============================
+[0m15:03:56.793995 [info ] [MainThread]: Running with dbt=1.11.8
+[0m15:03:56.794982 [debug] [MainThread]: running dbt with arguments {'version_check': 'True', 'no_print': 'None', 'static_parser': 'True', 'target_path': 'None', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'printer_width': '80', 'write_json': 'True', 'introspect': 'True', 'log_cache_events': 'False', 'empty': 'None', 'cache_selected_only': 'False', 'log_format': 'default', 'debug': 'False', 'fail_fast': 'False', 'partial_parse': 'True', 'send_anonymous_usage_stats': 'True', 'quiet': 'False', 'warn_error': 'None', 'profiles_dir': 'C:\\Users\\hppat\\.dbt', 'indirect_selection': 'eager', 'use_colors': 'True', 'invocation_command': 'dbt init stocksense', 'use_experimental_parser': 'False', 'log_path': 'logs'}
+[0m15:03:56.823983 [info ] [MainThread]: Creating dbt configuration folder at C:\Users\hppat\.dbt
+[0m15:03:56.828984 [debug] [MainThread]: Starter project path: N:\DATA ENGINEERING PRJS\StockSenseForcasting\venv\Lib\site-packages\dbt\include\starter_project
+[0m15:03:56.903520 [info ] [MainThread]: 
+Your new dbt project "stocksense" was created!
+
+For more information on how to configure the profiles.yml file,
+please consult the dbt documentation here:
+
+  https://docs.getdbt.com/docs/configure-your-profile
+
+One more thing:
+
+Need help? Don't hesitate to reach out to us via GitHub issues or on Slack:
+
+  https://community.getdbt.com/
+
+Happy modeling!
+
+[0m15:03:56.904532 [info ] [MainThread]: Setting up your profile.
+[0m15:09:18.321282 [info ] [MainThread]: Profile stocksense written to C:\Users\hppat\.dbt\profiles.yml using target's sample configuration. Once updated, you'll be able to start developing with dbt.
+[0m15:09:18.322272 [debug] [MainThread]: Command `dbt init` succeeded at 15:09:18.322272 after 321.62 seconds
+[0m15:09:18.323285 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000287C5710B50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000287CADF20D0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000287C7F982D0>]}
+[0m15:09:18.323285 [debug] [MainThread]: Flushing usage events
+[0m15:09:18.680779 [debug] [MainThread]: An error was encountered while trying to flush usage events

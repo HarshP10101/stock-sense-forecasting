@@ -1,0 +1,22 @@
+.# Data files (too large for GitHub)
+data/raw/
+
+# Environment
+.env
+venv/
+
+# DuckDB database
+*.duckdb
+*.duckdb.wal
+
+# dbt
+stocksense/target/
+stocksense/dbt_packages/
+stocksense/logs/
+
+# Python
+__pycache__/
+*.pyc
+
+# Dagster
+dagster_project/storage/
