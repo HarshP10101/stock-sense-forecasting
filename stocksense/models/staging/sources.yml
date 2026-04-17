@@ -1,0 +1,13 @@
+version: 2
+
+sources:
+  - name: raw
+    meta:
+      external_location: "N:/DATA ENGINEERING PRJS/StockSenseForcasting/data/raw/{name}.csv"
+    tables:
+      - name: train
+      - name: stores
+      - name: oil
+      - name: holidays_events
+      - name: transactions
+      - name: items

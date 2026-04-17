@@ -1,0 +1,130 @@
+version: 2
+
+models:
+  - name: stg_stores
+    description: "Staged store metadata from Corporación Favorita. One row per store. 54 stores across 22 cities in Ecuador."
+    columns:
+      - name: store_id
+        description: "Unique identifier for each store."
+        tests:
+          - unique
+          - not_null
+      - name: city
+        description: "City where the store is located."
+        tests:
+          - not_null
+      - name: state
+        description: "State or province where the store is located."
+        tests:
+          - not_null
+      - name: store_type
+        description: "Store format category (A through E) indicating size and service level."
+        tests:
+          - not_null
+      - name: cluster
+        description: "Numeric grouping of similar stores based on demographics and sales patterns."
+        tests:
+          - not_null
+
+  - name: stg_items
+    description: "Staged product catalog. One row per unique item. Approximately 4,400 items across 33 families and 337 classes."
+    columns:
+      - name: item_id
+        description: "Unique identifier for each product."
+        tests:
+          - unique
+          - not_null
+      - name: product_family
+        description: "High-level product category (e.g., GROCERY I, CLEANING, BREAD/BAKERY)."
+        tests:
+          - not_null
+      - name: product_class
+        description: "Sub-category within a product family."
+        tests:
+          - not_null
+      - name: is_perishable
+        description: "Boolean flag indicating whether the item is perishable."
+        tests:
+          - not_null
+
+  - name: stg_oil
+    description: "Staged daily West Texas Intermediate crude oil prices in USD. One row per calendar date. Prices are null when markets are closed (weekends, holidays)."
+    columns:
+      - name: date
+        description: "Calendar date."
+        tests:
+          - unique
+          - not_null
+      - name: oil_price_usd
+        description: "WTI crude oil closing price in USD. Null on market-closed days."
+
+  - name: stg_transactions
+    description: "Staged daily transaction counts per store. One row per store per date. Only covers the training data timeframe."
+    columns:
+      - name: transaction_date
+        description: "Date of the transactions."
+        tests:
+          - not_null
+      - name: store_id
+        description: "Store where the transactions occurred. Foreign key to stg_stores."
+        tests:
+          - not_null
+      - name: transaction_count
+        description: "Number of customer checkouts at this store on this date."
+        tests:
+          - not_null
+
+  - name: stg_holidays_events
+    description: "Staged Ecuadorian holiday calendar including national, regional, and local holidays plus transferred, bridge, and work days. Multiple rows per date are possible when holidays overlap across regions."
+    columns:
+      - name: holiday_date
+        description: "Calendar date of the holiday or event."
+        tests:
+          - not_null
+      - name: holiday_type
+        description: "Type of day: Holiday, Transfer, Bridge, Work Day, Additional, or Event."
+        tests:
+          - not_null
+      - name: region_scope
+        description: "Geographic scope: National, Regional, or Local."
+        tests:
+          - not_null
+      - name: region_name
+        description: "Name of the specific region (city, province, or country) the holiday applies to."
+        tests:
+          - not_null
+      - name: holiday_name
+        description: "Descriptive name of the holiday or event."
+        tests:
+          - not_null
+      - name: is_transferred
+        description: "Boolean flag indicating whether this holiday was officially moved to another date. A transferred day behaves like a normal day."
+        tests:
+          - not_null
+
+  - name: stg_train
+    description: "Staged historical sales transactions. One row per sale event (store, item, date). Covers Jan 2013 to Aug 2017. Excludes zero-sales rows — if an item didn't sell at a store on a given day, no row exists. Negative values indicate returns."
+    columns:
+      - name: sale_id
+        description: "Unique identifier for each sales row."
+        tests:
+          - unique
+          - not_null
+      - name: sale_date
+        description: "Date the sale occurred."
+        tests:
+          - not_null
+      - name: store_id
+        description: "Store where the sale occurred. Foreign key to stg_stores."
+        tests:
+          - not_null
+      - name: item_id
+        description: "Product sold. Foreign key to stg_items."
+        tests:
+          - not_null
+      - name: unit_sales
+        description: "Number of units sold. Integer for countable items (e.g., bags of chips), decimal for weighted items (e.g., 1.5 kg of cheese). Negative values represent returns."
+        tests:
+          - not_null
+      - name: is_on_promotion
+        description: "Boolean flag indicating if the item was on promotion. Approximately 16% of values are null in the raw data."
