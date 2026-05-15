@@ -87,3 +87,61 @@ models:
 
       - name: is_weekend
         description: "Boolean flag indicating whether the date falls on a weekend."
+
+  - name: fct_sales
+    description: "Central sales fact table at one row per store, item, and date. Includes sales measures, dimension foreign keys, oil price context, and holiday attributes for reporting, forecasting, and analytics."
+    columns:
+      - name: sales_key
+        description: "Surrogate key generated from store_id, item_id, and sale_date. Uniquely identifies each sales fact row."
+        tests:
+          - unique
+          - not_null
+
+      - name: store_key
+        description: "Foreign key to dim_stores."
+        tests:
+          - not_null
+
+      - name: item_key
+        description: "Foreign key to dim_items."
+        tests:
+          - not_null
+
+      - name: date_key
+        description: "Foreign key to dim_date."
+        tests:
+          - not_null
+
+      - name: store_id
+        description: "Natural store identifier from the source transaction data."
+
+      - name: item_id
+        description: "Natural item identifier from the source transaction data."
+
+      - name: sale_date
+        description: "Date of the sales transaction record."
+        tests:
+          - not_null
+
+      - name: unit_sales
+        description: "Number of units sold for the store, item, and date combination."
+        tests:
+          - not_null
+
+      - name: is_on_promotion
+        description: "Boolean flag indicating whether the item was promoted on the sale date."
+
+      - name: oil_price
+        description: "Forward-filled daily oil price joined by sale date."
+
+      - name: holiday_name
+        description: "Name of the holiday occurring on the sale date, if applicable."
+
+      - name: holiday_type
+        description: "Type or category of the holiday occurring on the sale date, if applicable."
+
+      - name: is_transferred
+        description: "Boolean flag indicating whether the holiday was transferred from its original date."
+
+      - name: region_scope
+        description: "Geographic scope of the holiday, such as national, regional, or local."  
