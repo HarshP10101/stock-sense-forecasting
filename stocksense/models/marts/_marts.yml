@@ -1,0 +1,89 @@
+version: 2
+
+models:
+  - name: dim_stores
+    description: "Store dimension table containing one row per store, with store location, type, and cluster information for analysis."
+    columns:
+      - name: store_key
+        description: "Surrogate key generated from store_id. Used as the primary key for the store dimension."
+        tests:
+          - unique
+          - not_null
+
+      - name: store_id
+        description: "Natural store identifier from the source system."
+        tests:
+          - not_null
+
+      - name: city
+        description: "City where the store is located."
+
+      - name: state
+        description: "State where the store is located."
+
+      - name: store_type
+        description: "Store type classification from the source system."
+
+      - name: cluster
+        description: "Store cluster group used to categorize stores with similar characteristics."
+  
+  - name: dim_items
+    description: "Item dimension table containing one row per item, with product family, product class, and perishability attributes for analysis."
+    columns:
+      - name: item_key
+        description: "Surrogate key generated from item_id. Used as the primary key for the item dimension."
+        tests:
+          - unique
+          - not_null
+
+      - name: item_id
+        description: "Natural item identifier from the source system."
+        tests:
+          - not_null
+
+      - name: product_family
+        description: "High-level product family or category for the item."
+
+      - name: product_class
+        description: "Product class used to group similar items."
+
+      - name: is_perishable
+        description: "Indicates whether the item is perishable."
+
+  - name: dim_date
+    description: "Date dimension table containing one row per calendar date from 2013-01-01 to 2017-08-31, with standard date attributes for time-based analysis."
+    columns:
+      - name: date_key
+        description: "Surrogate key generated from date_actual. Used as the primary key for the date dimension."
+        tests:
+          - unique
+          - not_null
+
+      - name: date_actual
+        description: "Calendar date represented as a DATE value."
+        tests:
+          - not_null
+
+      - name: year
+        description: "Calendar year extracted from date_actual."
+
+      - name: month
+        description: "Calendar month number extracted from date_actual, from 1 to 12."
+
+      - name: month_name
+        description: "Full calendar month name extracted from date_actual."
+
+      - name: day_of_month
+        description: "Day number within the month extracted from date_actual."
+
+      - name: day_of_week
+        description: "Day of week number extracted from date_actual."
+
+      - name: day_name
+        description: "Full day name extracted from date_actual."
+
+      - name: quarter
+        description: "Calendar quarter extracted from date_actual."
+
+      - name: is_weekend
+        description: "Boolean flag indicating whether the date falls on a weekend."
